@@ -1,6 +1,8 @@
 recognize
 =========
 
+[![Build Status](https://travis-ci.org/spencerwi/recognize.png)](https://travis-ci.org/spencerwi/recognize)
+
 recognize is a simple python library for vocabulary recognition.
 
 It uses a configurable [Levenshtein distance](http://en.wikipedia.org/wiki/Levenshtein_distance) threshold to 
