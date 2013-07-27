@@ -14,8 +14,7 @@ Usage
 
 For use with recognize, your vocabulary should be an iterable of string-like objects.
 
-Then, import recognize and initialize it with your vocabulary (and optionally your desired Levenshtein 
-distance threshold for matching; the default is 3):
+Then, import recognize and just call the `recognize()` method with your word to match, your vocabulary, and optionally your desired Levenshtein distance threshold for matching (the default is 3):
 
 ```python
 >>> from recognize import recognize
