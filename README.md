@@ -34,4 +34,11 @@ set(['banana'])
 set(['orange'])
 ```
 
+Installation
+------------
+
+After cloning the project into a directory, run `python setup.py install`
+
+Tests are available by running `python setup.py test`; nosetest is used as the test runner.
+
 
