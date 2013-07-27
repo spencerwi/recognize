@@ -28,7 +28,7 @@ class Recognizer(object):
         """Fetches a list of candidate vocabulary words that a might match the given word."""
         if word in self.vocabulary:
             return word
-        candidates = {candidate for candidate in self.vocabulary if Recognizer.levenshtein(candidate, word) <= self.distance}
+        candidates = set(candidate for candidate in self.vocabulary if Recognizer.levenshtein(candidate, word) <= self.distance)
         return candidates
 
 
