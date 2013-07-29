@@ -1,3 +1,5 @@
+from algorithms import levenshtein
+
 """recognize is a simple python library for vocabulary recognition.
 
 It uses a configurable Levenshtein distance threshold to determine which words of a given vocabulary are likely matches.
@@ -27,42 +29,26 @@ threshold = 3
 
 
 class Recognizer(object):
-    def __init__(self, vocabulary = [], distance = 3):
+    def __init__(self, vocabulary = [], distance = 3, algorithm=levenshtein):
         self.vocabulary = vocabulary
         self.distance = distance
+        self.get_distance = algorithm
 
     def vocab_from_file(self, filename, delimiter=None):
         """Reads vocabulary from a file. Delimiter defaults to all whitespace."""
         # TODO: finish this
         raise NotImplementedError
 
-    # TODO: move this to a "algorithms.distance" package, refactor to "get_distance()" method
-    @staticmethod
-    def levenshtein(seq1, seq2):
-        """Calculates the levenshtein distance between two strings."""
-        oneago = None
-        thisrow = range(1, len(seq2) + 1) + [0]
-        for x in xrange(len(seq1)):
-            (twoago, oneago, thisrow,) = (oneago, thisrow, [0] * len(seq2) + [x + 1])
-            for y in xrange(len(seq2)):
-                delcost = oneago[y] + 1
-                addcost = thisrow[(y - 1)] + 1
-                subcost = oneago[(y - 1)] + (seq1[x] != seq2[y])
-                thisrow[y] = min(delcost, addcost, subcost)
-
-
-        return thisrow[(len(seq2) - 1)]
-
 
     def recognize(self, word):
         """Fetches a list of candidate vocabulary words that a might match the given word."""
         if word in self.vocabulary:
             return word
-        candidates = set(candidate for candidate in self.vocabulary if Recognizer.levenshtein(candidate, word) <= self.distance)
+        candidates = set(candidate for candidate in self.vocabulary if self.get_distance(candidate, word) <= self.distance)
         return candidates
 
 
-def recognize(word, vocabulary = [], distance = 3):
+def recognize(word, vocabulary=[], distance=3, algorithm=levenshtein):
     """Fetches a list of candidate vocabulary words from a given wordlist that a might match the given word."""
-    recognizer = Recognizer(vocabulary, distance)
+    recognizer = Recognizer(vocabulary=vocabulary, distance=distance, algorithm=algorithm)
     return recognizer.recognize(word)

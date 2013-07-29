@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 try:
     from unittest2 import TestCase
 except ImportError:
@@ -10,12 +9,6 @@ class TestRecognizer(TestCase):
     def setUp(self):
         self.recognizer = recognize.Recognizer(vocabulary=["grape", "banana", "strawberry"],
                                      distance=3)
-
-    def test_levenshtein(self):
-        """levenshtein should return the correct Levenshtein distance between two words."""
-        assert self.recognizer.levenshtein("one", "ode")   == 1  # simplest case: change a letter
-        assert self.recognizer.levenshtein("one", "once")  == 1  # slightly more complex: letter insertion
-        assert self.recognizer.levenshtein("two", "three") == 4  # different word lengths AND different letters
 
     def test_recognize(self):
         """recognize should return a list of matching words within the specified threshold."""
