@@ -10,7 +10,7 @@ config = {
     "url": "http://github.com/spencerwi/recognize.git",
     "download_url": "https://github.com/spencerwi/recognize/archive/master.zip",
     "author_email": "spencerwi@gmail.com",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "packages": ["recognize"],
     "classifiers": [
         "Development Status :: 3 - Alpha",

@@ -36,8 +36,9 @@ class Recognizer(object):
 
     def vocab_from_file(self, filename, delimiter=None):
         """Reads vocabulary from a file. Delimiter defaults to all whitespace."""
-        # TODO: finish this
-        raise NotImplementedError
+        with open(filename) as infile:
+            raw_content = infile.read()
+            self.vocabulary = raw_content.split(delimiter)
 
 
     def recognize(self, word):

@@ -1,3 +1,4 @@
+import os
 try:
     from unittest2 import TestCase
 except ImportError:
@@ -14,6 +15,12 @@ class TestRecognizer(TestCase):
         """recognize should return a list of matching words within the specified threshold."""
         expected = set(["banana"])
         assert self.recognizer.recognize("ana") == expected  # "ana" should match to "banana" within a levenshtein threshold of 3
+
+    def test_vocab_from_file(self):
+        """Recognizers should be able to read vocabulary from a file."""
+        expected = ["banana", "grape", "orange"]
+        self.recognizer.vocab_from_file(os.path.join(os.path.dirname(__file__), 'vocab.txt'))
+        assert self.recognizer.vocabulary == expected
 
 
 class TestShortcutMethod(TestCase):
